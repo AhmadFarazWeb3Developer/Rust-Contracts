@@ -55,7 +55,33 @@ fn main() {
 
     let x = 10;
     foo_int(x);
-    println!("{}", x)
+    println!("{}", x);
+
+    /*
+
+Just like passing arguments to functions moves data types like String to the
+ scope of function, returning a String or similar data type from a function also
+ moves (transfers ownership) the string to the scope where it was called, as
+ shown in the following code snippet:
+ */
+
+    let s = get_string();
+    println!("{}", s);
+
+    // --- Clone --- : some time you would need a separete deep copy to work with independent of actucal owner variable
+
+    let s1 = String::from("rust");
+    println!("{}", s1);
+    println!("Pointer: {:?}, ", s1.as_ptr());
+
+    let s2 = s1.clone(); // Ownership transferred from `sa` to `sb`
+    // This operation is called "Move". It ensures only one owner of the underlying string data,
+    // preventing memory errors due to double free.
+
+    // println!("{}", sa); throws error of ownership transfered
+    println!("{}", s1);
+    println!("{}", s2);
+    println!("Pointer: {:?}, ", s2.as_ptr()); // s1 pointer is now different from s2
 }
 fn foo_string(ss: String) {
     // ss comes into scope
@@ -64,4 +90,9 @@ fn foo_string(ss: String) {
 
 fn foo_int(a: i32) {
     println!("{}", a);
+}
+
+fn get_string() -> String {
+    let ss = String::from("Nadar Shah");
+    ss // ss is moved
 }
