@@ -42,12 +42,12 @@ fn main() {
 
     //-----------------------------------------------------------------
     /*
-    Passing values to functions has similar behavior as assignment. If we pass a
- data type like String, vector a function as argument, these are moved by
- default and will no longer be usable in the original scope, whereas if we pass
- an integer as argument, we can still use it in the current scope since the value
- is copied. This behavior can be seen in the following code snippet
-     */
+       Passing values to functions has similar behavior as assignment. If we pass a
+    data type like String, vector a function as argument, these are moved by
+    default and will no longer be usable in the original scope, whereas if we pass
+    an integer as argument, we can still use it in the current scope since the value
+    is copied. This behavior can be seen in the following code snippet
+        */
 
     let s = String::from("Ahmad Faraz");
     foo_string(s);
@@ -59,11 +59,11 @@ fn main() {
 
     /*
 
-Just like passing arguments to functions moves data types like String to the
- scope of function, returning a String or similar data type from a function also
- moves (transfers ownership) the string to the scope where it was called, as
- shown in the following code snippet:
- */
+    Just like passing arguments to functions moves data types like String to the
+     scope of function, returning a String or similar data type from a function also
+     moves (transfers ownership) the string to the scope where it was called, as
+     shown in the following code snippet:
+     */
 
     let s = get_string();
     println!("{}", s);
@@ -82,7 +82,67 @@ Just like passing arguments to functions moves data types like String to the
     println!("{}", s1);
     println!("{}", s2);
     println!("Pointer: {:?}, ", s2.as_ptr()); // s1 pointer is now different from s2
+
+    // ---------------- REFRENCES AND BORROWING -------------------
+
+    /*
+     We have seen that when we pass String as an argument to a function, its
+     value is moved to the function’s scope and is no longer usable in the current
+     context. In order to be able to use it again, the function should return the
+     same string as one of the return values, which should be captured in the
+     current scope. But this is too much work for a simple task. Luckily, Rust
+     supports references, which allows functions to refer to a value without taking
+     ownership of it.
+
+     -> By default, references are immutable, that is, they are not allowed to change
+        the borrowed value.
+    */
+
+    let mut s = String::from("reference");
+    foo_string_ref(&mut s); // ‘s’ passed as reference
+    println!("{}", s);
+
+    // ------ Checking Correctness ------
+    // 1 : correct
+
+    let mut _s = String::from("rust programming");
+    let _ref1 = &_s;
+    let _ref2 = &_s;
+    println!("ref1 : {} ", _ref1);
+    println!("ref2 : {} ", _ref2);
+    // 2 : correct
+    let mut s = String::from("rust");
+    let ref1 = &mut s;
+    println!("{}", ref1);
+
+    // 3 : incorrect
+    let mut _s = String::from("rust");
+    let _ref1 = &_s; // dead because its not used , if i use then i will get error
+    let ref2 = &mut _s;
+    ref2.push_str("programming");
+    // println!("{} : ", _ref1); // error
+    println!("{} : ", _ref2); //
+
+    // 4 : correct
+
+    let mut s = String::from("rust");
+    {
+        let ref1 = &mut s;
+    } // ref1 goes out of scope
+    let ref2 = &mut s;
 }
+
+fn foo_string_ref(s: &mut String) {
+    println!("Accessing : {} ", s);
+    s.push_str(" Updated");
+    /*This phenomenon of functions having references as parameters is called
+    borrowing because the function just borrows the values and does not own
+    them
+
+    -> i have updated with mut, which is not neccessry for not updating the string value
+    */
+}
+
 fn foo_string(ss: String) {
     // ss comes into scope
     println!("{}", ss);
