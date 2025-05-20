@@ -3,8 +3,6 @@ fn main() {
     let int127: i8 = 127; // -128 to 127
     println!("{}", uint255);
     println!("{}", int127);
-
-   
 }
 
 // Unsigned integers can only represent positive values, whereas signed integers

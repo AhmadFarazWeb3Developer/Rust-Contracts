@@ -13,5 +13,5 @@ fn main() {
 
     let length = _zero_init_array.len();
     _zero_init_array[length - 1] = 100; // setting last index value to 100
-    println!("{}", _zero_init_array[length - 1]); 
+    println!("{}", _zero_init_array[length - 1]);
 }

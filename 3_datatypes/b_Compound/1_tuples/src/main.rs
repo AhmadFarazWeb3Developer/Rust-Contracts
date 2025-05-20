@@ -1,8 +1,10 @@
 fn main() {
-    let tuple = (1, 'a', 3.4);
-    let first_element = tuple.0;
+    let tuple: (u8, &str, f64) = (1, "a", 3.4);
+    // let tuple = (1, 'a', 3.4);
+    // let first_element = tuple.0;
     // tuple.0 = 24; error cannot assing , change tuple to mut
-    println!("{}", first_element)
+    // println!("{}", tuple); //throws error
+    println!("{:?}", tuple);
 }
 
 /*

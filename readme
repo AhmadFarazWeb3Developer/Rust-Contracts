@@ -1,12 +1,26 @@
-cargo is Rust’s package manager and build system. It handles the building of
+# Basic Understanding
+
+-> cargo is Rust’s package manager and build system. It handles the building of
 your code and its dependencies
 
-If we had to create the same hello world project using cargo, we would do
+-> If we had to create project using cargo, we would do
 following (go to the rust_projects directory from terminal/Command
 Prompt):
-$ cargo new hello_world_cargo
-$ cd hello_world_cargo
+$ cargo new project_name
+$ cd project_name
 
-Building and running with cargo
-In order to build and run our program, we can use the cargo run command:
+-> Building and running with cargo
+In order to build and run program, we can use the cargo run command:
 $ cargo run
+
+-> "cargo.toml" file is just like package.json in other projects
+
+-> project_name.exe is the actual machine code after compilation of code in \target\debug\project_name.exe
+
+-> cargo run --release is used for generating optimazed code while deploying in production
+
+                                      DataTypes
+                                          |
+                                 ___________________
+                                |                   |
+                            Scalar                 Compound
