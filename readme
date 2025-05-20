@@ -1,0 +1,12 @@
+cargo is Rust’s package manager and build system. It handles the building of
+your code and its dependencies
+
+If we had to create the same hello world project using cargo, we would do
+following (go to the rust_projects directory from terminal/Command
+Prompt):
+$ cargo new hello_world_cargo
+$ cd hello_world_cargo
+
+Building and running with cargo
+In order to build and run our program, we can use the cargo run command:
+$ cargo run
