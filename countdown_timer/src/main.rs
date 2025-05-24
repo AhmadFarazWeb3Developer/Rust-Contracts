@@ -14,6 +14,7 @@ fn main() {
             }
         };
         start_timer(timer);
+        break;
     }
 }
 fn start_timer(timer: u16) {
