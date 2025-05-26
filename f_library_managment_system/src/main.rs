@@ -1,3 +1,5 @@
+use std::result;
+
 #[derive(Debug)]
 struct Book {
     title: String,
@@ -16,6 +18,7 @@ enum LibraryError {
     BookNotAvaliable,
     BookNotFound,
     AlreadyBorrowed,
+    BookAlreadyExits,
 }
 
 impl Book {
@@ -31,8 +34,18 @@ impl Book {
 }
 
 impl Library {
-    fn add_book(self) {}
+    fn add_book(&mut self, book: Book) -> Result<(), LibraryError> {
+        if self.book.is_none() {
+            self.book = Some(book);
+            Ok(())
+        } else {
+            Err(LibraryError::BookAlreadyExits)
+        }
+    }
+
     fn borrow_book(&mut self) -> Result<&mut Book, LibraryError> {
+        // let some_value=Some(boo);
+        // of some_value= etc , so the readable code is used below
         if let Some(book) = self.book.as_mut() {
             match book.borrow() {
                 Ok(borrowed_book) => {
@@ -48,9 +61,8 @@ impl Library {
             Err(LibraryError::BookNotFound)
         }
     }
-    fn return_book(self) {}
+    fn return_book() {}
 }
-
 fn main() {
     let mut book: Book = Book {
         title: String::from("The rust book"),
@@ -61,9 +73,19 @@ fn main() {
     let mut library: Library = Library {
         name: String::from(String::from("City Library")),
         address: String::from(String::from("")),
-        book: Some(book),
+        book: None, // Some(book)
     };
 
+    // Add book to libaray
+    match library.add_book(book) {
+        Ok(_) => {
+            println!("Book added");
+        }
+        Err(err) => {
+            println!("{:?}", err);
+        }
+    }
+
     match library.borrow_book() {
         Ok(result) => {
             println!("Borrowed book : {:#?}", result);
@@ -81,5 +103,6 @@ fn main() {
             println!("Borrowed book : {:#?}", err);
         }
     }
+
     // Attempt to borrow then book and handle the result
 }
