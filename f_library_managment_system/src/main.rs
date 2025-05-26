@@ -1,15 +1,17 @@
+#[derive(Debug)]
 struct Book {
     title: String,
     author: String,
     is_avaliable: bool,
 }
 
+#[derive(Debug)]
 struct Library {
     name: String,
     address: String,
     book: Option<Book>, // there can be some book in library or none
 }
-
+#[derive(Debug)]
 enum LibraryError {
     BookNotAvaliable,
     BookNotFound,
@@ -31,7 +33,7 @@ impl Book {
 impl Library {
     fn add_book(self) {}
     fn borrow_book(&mut self) -> Result<&mut Book, LibraryError> {
-        if let Some(book) = self.book {
+        if let Some(book) = self.book.as_mut() {
             match book.borrow() {
                 Ok(borrowed_book) => {
                     println!("Book is borrowed");
@@ -62,6 +64,22 @@ fn main() {
         book: Some(book),
     };
 
-    library.borrow_book()
+    match library.borrow_book() {
+        Ok(result) => {
+            println!("Borrowed book : {:#?}", result);
+        }
+        Err(err) => {
+            println!("Borrowed book : {:#?}", err);
+        }
+    }
+
+    match library.borrow_book() {
+        Ok(result) => {
+            println!("Borrowed book : {:#?}", result);
+        }
+        Err(err) => {
+            println!("Borrowed book : {:#?}", err);
+        }
+    }
     // Attempt to borrow then book and handle the result
 }
