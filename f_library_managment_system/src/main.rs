@@ -30,7 +30,9 @@ impl Book {
             Err(LibraryError::AlreadyBorrowed)
         }
     }
-    fn return_book(self) {}
+    fn return_book(&mut self) {
+        self.is_avaliable = true;
+    }
 }
 
 impl Library {
@@ -44,24 +46,23 @@ impl Library {
     }
 
     fn borrow_book(&mut self) -> Result<&mut Book, LibraryError> {
-        // let some_value=Some(boo);
-        // of some_value= etc , so the readable code is used below
         if let Some(book) = self.book.as_mut() {
             match book.borrow() {
-                Ok(borrowed_book) => {
-                    println!("Book is borrowed");
-                    Ok(borrowed_book)
-                }
-                Err(err) => {
-                    println!("Book is already borrowed");
-                    Err(err)
-                }
+                Ok(borrowed_book) => { Ok(borrowed_book) }
+                Err(err) => { Err(err) }
             }
         } else {
             Err(LibraryError::BookNotFound)
         }
     }
-    fn return_book() {}
+    fn return_book(&mut self) -> Result<(), LibraryError> {
+        if let Some(book) = self.book.as_mut() {
+            book.return_book();
+            Ok(())
+        } else {
+            Err(LibraryError::BookNotFound)
+        }
+    }
 }
 fn main() {
     let mut book: Book = Book {
@@ -85,7 +86,7 @@ fn main() {
             println!("{:?}", err);
         }
     }
-
+    // borrow book
     match library.borrow_book() {
         Ok(result) => {
             println!("Borrowed book : {:#?}", result);
@@ -95,6 +96,7 @@ fn main() {
         }
     }
 
+    // again borrow book
     match library.borrow_book() {
         Ok(result) => {
             println!("Borrowed book : {:#?}", result);
@@ -104,5 +106,13 @@ fn main() {
         }
     }
 
-    // Attempt to borrow then book and handle the result
+    // return book
+    match library.return_book() {
+        Ok(_) => {
+            println!("Book Returned Successfully");
+        }
+        Err(err) => {
+            println!("{:?}", err);
+        }
+    };
 }
