@@ -1,3 +1,24 @@
+struct Counter {
+    counter: u32,
+}
+impl Counter {
+    fn new() -> Self {
+        Counter { counter: 0 }
+    }
+}
+
+impl Iterator for Counter {
+    type Item = u32; // Associative type 
+    fn next(&mut self) -> Option<Self::Item> {
+        self.counter = self.counter + 1;
+        if self.counter < 5 {
+            Some(self.counter)
+        } else {
+            None
+        }
+    }
+}
+
 fn main() {
     let mut int_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     for item in int_arr {
@@ -51,4 +72,10 @@ fn main() {
     }
 
     println!("{:?}", int_arr); // [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+    // Custome Iterator
+    let mut counter = Counter::new();
+    while let Some(value) = counter.next() {
+        println!("{}", value);
+    }
 }
