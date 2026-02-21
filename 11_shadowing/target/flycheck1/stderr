@@ -1,8 +1,1 @@
-   0.016408000s  INFO prepare_target{force=false package_id=shadowing v0.1.0 (C:\Users\MMO\desktop\Rust-Contracts\11_shadowing) target="shadowing"}: cargo::core::compiler::fingerprint: fingerprint dirty for shadowing v0.1.0 (C:\Users\MMO\desktop\Rust-Contracts\11_shadowing)/Check { test: false }/TargetInner { name: "shadowing", doc: true, ..: with_path("C:\\Users\\MMO\\desktop\\Rust-Contracts\\11_shadowing\\src\\main.rs", Edition2024) }
-   0.016459700s  INFO prepare_target{force=false package_id=shadowing v0.1.0 (C:\Users\MMO\desktop\Rust-Contracts\11_shadowing) target="shadowing"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(Stale)
-   0.017326200s  INFO prepare_target{force=false package_id=shadowing v0.1.0 (C:\Users\MMO\desktop\Rust-Contracts\11_shadowing) target="shadowing"}: cargo::core::compiler::fingerprint: fingerprint dirty for shadowing v0.1.0 (C:\Users\MMO\desktop\Rust-Contracts\11_shadowing)/Check { test: true }/TargetInner { name: "shadowing", doc: true, ..: with_path("C:\\Users\\MMO\\desktop\\Rust-Contracts\\11_shadowing\\src\\main.rs", Edition2024) }
-   0.017350600s  INFO prepare_target{force=false package_id=shadowing v0.1.0 (C:\Users\MMO\desktop\Rust-Contracts\11_shadowing) target="shadowing"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(Stale)
-    Checking shadowing v0.1.0 (C:\Users\MMO\desktop\Rust-Contracts\11_shadowing)
-error: could not compile `shadowing` (bin "shadowing" test) due to 1 previous error
-warning: build failed, waiting for other jobs to finish...
-error: could not compile `shadowing` (bin "shadowing") due to 1 previous error
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s

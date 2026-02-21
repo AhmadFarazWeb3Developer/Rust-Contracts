@@ -3,8 +3,8 @@
 2. Optional Enum
 3. Result Enum
 
-
 ->  data members of enum is called variants and for struct its called fields
+
 */
 
 //Simple Enum

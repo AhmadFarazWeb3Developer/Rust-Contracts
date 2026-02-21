@@ -1,1 +1,1 @@
-C:\Rust\7_ownership\slice\target\debug\slice.exe: C:\Rust\7_ownership\slice\src\main.rs
+C:\Users\MMO\Desktop\Rust-Contracts\7_ownership_borrowing\slice\target\debug\slice.exe: C:\Users\MMO\Desktop\Rust-Contracts\7_ownership_borrowing\slice\src\main.rs

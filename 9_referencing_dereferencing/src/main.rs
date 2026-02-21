@@ -1,6 +1,6 @@
 fn main() {
     let x = 5;
-    println!("address : {}", &x);
+    println!("value : {}", &x);
     println!("address : {:p}", &x);
 
     let mut a = 10; // a owns the value 10 — it's like owning a locker with something inside
@@ -11,8 +11,8 @@ fn main() {
 
     *b += 10; // b uses the key to change what's inside: now it's 20
 
-    // println!("a {:p}", &a);          ERROR if uncommented
-    // println!("a {}", &a);           ERROR if uncommented
+    // println!("a {:p}", &a); // ERROR if uncommented
+    // println!("a {}", &a); // ERROR if uncommented
 
     // These lines would try to look inside the locker while b still has the key
     // Rust says: "No! You can't access it until b is finished using it."

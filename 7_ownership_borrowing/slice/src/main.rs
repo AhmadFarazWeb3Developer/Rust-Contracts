@@ -17,6 +17,14 @@ fn main() {
 
     println!("First name : {}", w3);
     println!("Second name : {}", w4);
+
+    let mut v = vec![10, 20, 30, 40];
+    let slice = &mut v[1..3]; // &mut [i32], mutable slice
+
+    slice[0] = 99;
+    slice[1] = 88;
+
+    println!("{:?}", v);
 }
 
 fn get_slice(s: &String) -> (&str, &str) {

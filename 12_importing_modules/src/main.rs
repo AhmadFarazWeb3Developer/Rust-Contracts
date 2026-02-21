@@ -1,4 +1,17 @@
-/*  first method 
+/*
+
+In Rust, modules are a way to organize your code into separate namespaces so
+it’s easier to manage, reuse, and avoid name conflicts. Think of them like
+folders or sections inside your program.
+
+
+- A module is defined using the mod keyword.
+- It groups related functions, structs, enums, constants, traits, and other modules together.
+- Modules help structure large Rust programs.
+
+*/
+
+/*  first method
 mod maths {
      pub fn add(a: u8, b: u8) -> u8 {
         a + b
@@ -7,7 +20,6 @@ mod maths {
         a - b
      }
  }
-            
     */
 
 // use maths::add;
