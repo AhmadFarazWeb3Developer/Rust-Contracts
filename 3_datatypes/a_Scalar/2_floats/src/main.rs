@@ -1,6 +1,6 @@
 fn main() {
     let mut x: f32 = f32::MAX; // Set to maximum possible f32 value
-    x = x * 2.0; // Force overflow
+     x = x * 2.0; // Force overflow
     println!("x: {}", x);
 }
 

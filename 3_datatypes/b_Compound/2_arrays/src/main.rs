@@ -3,10 +3,10 @@ fn main() {
     println!("{}", array[0]); // 12
 
     // Creating an empty array of 10 indexes
-
     let _empty_array: [i32; 10];
+
     // println!("{}", _empty_array[0]); // throws error because cannot access empty indexes , use the
-    // below methof fill with 0 values
+    // below method fill with 0 values
 
     let mut _zero_init_array = [0; 10];
     println!("{}", _zero_init_array[1]); // 0

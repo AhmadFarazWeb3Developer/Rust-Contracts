@@ -31,7 +31,12 @@ fn main() {
     // For non-primitive types like `String` and `Vec<T>`, ownership rules is used to manage heap.
     let sa = String::from("rust");
     println!("{}", sa);
-    println!("Pointer: {:?}, Capacity: {}, Length: {}", sa.as_ptr(), sa.capacity(), sa.len());
+    println!(
+        "Pointer: {:?}, Capacity: {}, Length: {}",
+        sa.as_ptr(),
+        sa.capacity(),
+        sa.len()
+    );
 
     let sb = sa; // Ownership transferred from `sa` to `sb`
     // This operation is called "Move". It ensures only one owner of the underlying string data,
@@ -39,7 +44,12 @@ fn main() {
 
     // println!("{}", sa); throws error of ownership transfered
     println!("{}", sb);
-    println!("Pointer: {:?}, Capacity: {}, Length: {}", sb.as_ptr(), sb.capacity(), sb.len());
+    println!(
+        "Pointer: {:?}, Capacity: {}, Length: {}",
+        sb.as_ptr(),
+        sb.capacity(),
+        sb.len()
+    );
 
     // Notice: `sa` is no longer accessible because ownership has moved to `sb`.
 
@@ -107,32 +117,49 @@ fn main() {
 
     // ------ Checking Correctness ------
     // 1 : correct
-
     let mut _s = String::from("rust programming");
     let _ref1 = &_s;
     let _ref2 = &_s;
     println!("ref1 : {} ", _ref1);
     println!("ref2 : {} ", _ref2);
+
     // 2 : correct
     let mut s = String::from("rust");
     let ref1 = &mut s;
+    ref1.push_str("ace");
+
     println!("{}", ref1);
+    println!("{}", s);
 
     // 3 : incorrect
     let mut _s = String::from("rust");
-    let _ref1 = &_s; // dead because its not used , if i use then i will get error
+    let _ref1 = &_s; // dead because its not used immedialty and the ref2 got the ownership, if i use then i will get error
     let ref2 = &mut _s;
     ref2.push_str("programming");
     // println!("{} : ", _ref1); // error
     println!("{} : ", _ref2); //
 
-    // 4 : correct
-
+    // 4 : correct but used till 2018
     let mut s = String::from("rust");
     {
         let ref1 = &mut s;
     } // ref1 goes out of scope
     let ref2 = &mut s;
+
+    let mut s = String::from("rust");
+    // ----------------------------
+    // Old Rust (pre-2018):
+    // Mutable borrow ref1 would last until the **end of this outer scope**.
+    // To take another mutable borrow (ref2), we had to limit ref1's scope using a block.
+    {
+        let ref1 = &mut s; // ref1 borrows s mutably
+    } // ref1 goes out of scope → borrow ends here in old Rust
+
+    // ----------------------------
+    // Modern Rust (2018+, NLL):
+    // Borrows end automatically **after their last use**.
+    // Even without the block, the compiler would allow ref2 after the last use of ref1.
+    let ref2 = &mut s; // safe, previous mutable borrow ended
 }
 
 fn foo_string_ref(s: &mut String) {

@@ -29,13 +29,11 @@ fn main() {
 
     // ---- While Let Loop ----
     println!("While let loop:");
-    let mut numbers = Some(0);
-    while let Some(value) = numbers {
-        if value > 5 {
-            break;
-        }
+
+    let mut stack = vec![1, 2, 3]; // the type of values are here vec<i32>
+    while let Some(value) = stack.pop() {
+        // but here the types are changed by rust for safety to Option<i32>, beacuse it may panic
+        // for empty value when go out of index
         print!("{}, ", value);
-        numbers = if value < 5 { Some(value + 1) } else { None };
     }
-    println!("");
 }

@@ -2,11 +2,12 @@
 // immutable, that is, their values cannot be modified or mutated once assigned.
 
 fn main() {
-    /*  let x=45;
-      println!("value is {}",x);
-      x=85;  error cannot assign twice to immutable variable `x`
-
-       In order to make a variable mutable, we have to add the mut keyword before
+    /*  
+    let x=45;
+    println!("value is {}",x);
+    x=85; // error cannot assign twice to immutable variable `x`
+    
+    In order to make a variable mutable, we have to add the mut keyword before
        the variable name, as suggested by the compiler. A
        println!("value is {}",x);
     */

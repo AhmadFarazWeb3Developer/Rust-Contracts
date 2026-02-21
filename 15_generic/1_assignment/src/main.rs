@@ -13,9 +13,7 @@ impl<T> Container<T> {
 }
 
 fn main() {
-    let mut container: Container<i32> = Container {
-        any_value: 12,
-    };
+    let mut container: Container<i32> = Container { any_value: 12 };
     println!("{:#?}", container);
     println!("{:?}", container.get_value());
     container.set_value(100);

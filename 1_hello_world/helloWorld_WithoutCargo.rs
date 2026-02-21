@@ -1,6 +1,9 @@
 fn main(){
    println!("Hello World!"); 
+   println!("Ahmad Faraz");
 }
+
+
 
 // we see the println!
 // macro (! means it’s a Rust macro and not a normal function).

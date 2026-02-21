@@ -16,14 +16,16 @@ enum Color {
 
 // Optional Enum
 
-enum OptionalValue<T> { // kuch or kuch bhi nhi
+enum OptionalValue<T> {
+    // kuch or kuch bhi nhi
     Some(T),
     None,
 }
 
 // Result Enum
 
-enum Result<T, E> { // result itself is the bulidin enum of rust , so thats why using this as my custom we use :: for calling it this enum
+enum Result<T, E> {
+    // result itself is the bulidin enum of rust , so thats why using this as my custom we use :: for calling it this enum
     Ok(T),
     Err(E),
 }
@@ -56,10 +58,16 @@ fn main() {
         Result::Ok(result) => {
             println!("Result of division {} ", result);
         }
-        Result::Err(error) => { eprintln!("Error: {}", error) }
+        Result::Err(error) => {
+            eprintln!("Error: {}", error)
+        }
     }
 }
 
 fn divide(x: i32, y: i32) -> Result<i32, String> {
-    if y == 0 { Result::Err(String::from("Division by zero")) } else { Result::Ok(x / y) }
+    if y == 0 {
+        Result::Err(String::from("Division by zero"))
+    } else {
+        Result::Ok(x / y)
+    }
 }
