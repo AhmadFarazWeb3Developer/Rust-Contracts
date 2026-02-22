@@ -1,4 +1,4 @@
-/* 
+/*
 lifetime is used to prevent the dangling reference,
 */
 

@@ -1,11 +1,15 @@
 // remove white space from a string
 
 use std::io;
+
 fn main() {
     let mut input = String::new();
     println!("Enter a string : ");
+
     io::stdin().read_line(&mut input).expect("Failed inputs");
+
     remove_whitespace(&mut input);
+
     remove_whitespace_usingchaining(&mut input);
     reverse_input(&mut input);
     println!("String {} ", input);
